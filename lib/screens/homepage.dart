@@ -115,9 +115,13 @@ class _HomePageState extends State<HomePage> {
       });
 
       //Remove duplicate extension - 13 Sep 2022
-      //String fileExt = imageFile!.path.replaceAll(".jpg.jpg", ".jpg");
+      String fileExt = imageFile!.path;
 
-      await GallerySaver.saveImage(imageFile!.path, toDcim: true);
+      if (fileExt.contains(".jpg.jpg")) {
+        fileExt = fileExt.replaceAll(".jpg.jpg", ".jpg");
+      }
+
+      await GallerySaver.saveImage(fileExt, toDcim: true);
 
       setState(() {
         firstButtonText = 'Image saved!';
