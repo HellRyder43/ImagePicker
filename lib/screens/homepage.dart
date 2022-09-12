@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
+        print(pickedFile.path);
       });
     }
   }
@@ -112,6 +113,9 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         firstButtonText = 'Saving in progress...';
       });
+
+      //Remove duplicate extension - 13 Sep 2022
+      //String fileExt = imageFile!.path.replaceAll(".jpg.jpg", ".jpg");
 
       await GallerySaver.saveImage(imageFile!.path, toDcim: true);
 
