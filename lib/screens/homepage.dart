@@ -81,29 +81,28 @@ class _HomePageState extends State<HomePage> {
 
   /// Get from gallery
   _getFromGallery() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.gallery,
-      maxWidth: 1000,
-      maxHeight: 1000,
-    );
-    if (pickedFile != null) {
+    final ImagePicker _picker = ImagePicker();
+
+    final XFile? imageFromGallery =
+        await _picker.pickImage(source: ImageSource.gallery);
+
+    if (imageFromGallery != null) {
       setState(() {
-        imageFile = File(pickedFile.path);
+        imageFile = File(imageFromGallery.path);
       });
     }
   }
 
-  /// Get from Camera
+  /// Get from camera
   _getFromCamera() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.camera,
-      maxWidth: 1000,
-      maxHeight: 1000,
-    );
-    if (pickedFile != null) {
+    final ImagePicker _picker = ImagePicker();
+
+    final XFile? imageFromCamera =
+        await _picker.pickImage(source: ImageSource.camera);
+
+    if (imageFromCamera != null) {
       setState(() {
-        imageFile = File(pickedFile.path);
-        print(pickedFile.path);
+        imageFile = File(imageFromCamera.path);
       });
     }
   }
